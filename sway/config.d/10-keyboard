@@ -1,0 +1,6 @@
+input * {
+    xkb_layout "se"
+    xkb_model "pc105"
+    xkb_variant ""
+    xkb_options ""
+}
