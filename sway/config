@@ -75,7 +75,7 @@ client.placeholder      $base00 $base00 $base05 $base00 $base00
 client.background       $base07
 
 # Your prefered terminal emulator
-#set $term footclient
+set $execterm footclient
 set $term gnome-terminal
 set $term_float_portrait $term --app-id=floating_shell_portrait
 set $term_float_landscape $term --app-id=floating_shell_landscape
@@ -84,7 +84,9 @@ set $term_float_landscape $term --app-id=floating_shell_landscape
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 set $launcher_options --background-color=$launcher-background-color --text-color=$launcher-text-color --selection-color=$launcher-selection-color --match-color=$launcher-matching-color --border-color=$launcher-border-color --lines=20 --width=50 --border-radius=10
-set $menu fuzzel --icon-theme=$icon-theme --terminal "$term" --font="$launcher-font" $launcher_options
+#set $menu fuzzel --icon-theme=$icon-theme --terminal "$term" --font="$launcher-font" $launcher_options
+set $menu wofi --term "$term" --show run
+set $dmenu wofi --term "$term" --show drun
 set $selwin sws.sh --dmenu-cmd "fuzzel --no-icons --dmenu $launcher_options" --format "%W | %A - %T" --font "$launcher-font"
 
 ### Lockscreen configuration
@@ -138,6 +140,10 @@ input type:touchpad {
       natural_scroll enabled
 }
 
+input type:pointer {
+      scroll_factor 5.5
+}
+
 focus_follows_mouse yes
 seat seat0 xcursor_theme $cursor-theme 24
 
@@ -164,9 +170,9 @@ bindsym $mod+Return exec $term
 bindsym $mod+Shift+c kill
 
 ## Launch // Application Launcher ##
-bindsym $mod+Shift+d exec $menu
+bindsym $mod+d exec $dmenu
 ## Launch // Window Switcher ##
-bindsym $mod+d exec $selwin
+bindsym $mod+Shift+d exec $selwin
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -379,7 +385,7 @@ mode --pango_markup $mode_resize {
     bindsym Escape mode "default"
 }
 ## Launch // Resize Mode ##
-bindsym $mod+r exec $menu
+bindsym $mod+r exec $execterm 
 
 ## Rotate screen
 bindsym $mod+m output HDMI-A-1 mode 1920x1080 transform 0
@@ -533,6 +539,6 @@ exec {
 # autostart background applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id mako
-#exec --no-startup-id foot --config=$HOME/.config/foot.ini --server
+exec --no-startup-id foot --config=$HOME/.config/foot.ini --server
 exec --no-startup-id dex --autostart --environment gnome --term $term
 exec --no-startup-id swaybg -i $(find $HOME/Pictures/Backgrounds/ -type f | shuf -n1) -m fill
