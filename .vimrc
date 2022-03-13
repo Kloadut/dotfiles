@@ -28,7 +28,7 @@ set undofile
 set title
 set nowrap
 set list
-"set listchars=tab:▸\ ,trail:·
+set listchars=tab:▸\ ,trail:·
 set mouse=
 set scrolloff=8
 set sidescrolloff=8

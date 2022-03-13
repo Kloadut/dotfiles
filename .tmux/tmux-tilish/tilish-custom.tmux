@@ -127,15 +127,15 @@ bind_switch "${mod}8" 8
 bind_switch "${mod}9" 9
 
 # Move pane to workspace via Alt + Shift + #.
-bind_move "${mod}$(char_at $shiftnum 1)" 1
-bind_move "${mod}$(char_at $shiftnum 2)" 2
-bind_move "${mod}$(char_at $shiftnum 3)" 3
-bind_move "${mod}$(char_at $shiftnum 4)" 4
-bind_move "${mod}$(char_at $shiftnum 5)" 5
-bind_move "${mod}$(char_at $shiftnum 6)" 6
-bind_move "${mod}$(char_at $shiftnum 7)" 7
-bind_move "${mod}$(char_at $shiftnum 8)" 8
-bind_move "${mod}$(char_at $shiftnum 9)" 9
+#bind_move "${mod}$(char_at $shiftnum 1)" 1
+#bind_move "${mod}$(char_at $shiftnum 2)" 2
+#bind_move "${mod}$(char_at $shiftnum 3)" 3
+#bind_move "${mod}$(char_at $shiftnum 4)" 4
+#bind_move "${mod}$(char_at $shiftnum 5)" 5
+#bind_move "${mod}$(char_at $shiftnum 6)" 6
+#bind_move "${mod}$(char_at $shiftnum 7)" 7
+#bind_move "${mod}$(char_at $shiftnum 8)" 8
+#bind_move "${mod}$(char_at $shiftnum 9)" 9
 
 # The mapping of Alt + 0 and Alt + Shift + 0 depends on `base-index`.
 # It can either refer to workspace number 0 or workspace number 10.
@@ -153,7 +153,7 @@ fi
 # The remaining mappings based on `z` and `t` should be quite obvious.
 bind_layout "${mod}s" 'main-horizontal'
 bind_layout "${mod}S" 'even-vertical'
-bind_layout "${mod}v" 'main-vertical'
+#bind_layout "${mod}v" 'main-vertical'
 bind_layout "${mod}V" 'even-horizontal'
 bind_layout "${mod}t" 'tiled'
 bind_layout "${mod}z" 'zoom'
@@ -172,18 +172,18 @@ tmux $bind "${mod}${j}" select-pane -D
 tmux $bind "${mod}${k}" select-pane -U
 tmux $bind "${mod}${l}" select-pane -R
 
-# Move a pane via Alt + Shift + hjkl.
+# Move a pane via Alt + Control + hjkl.
 if [ -z "$legacy" ]
 then
-	tmux $bind "${mod}${H}" swap-pane -s '{left-of}'
-	tmux $bind "${mod}${J}" swap-pane -s '{down-of}'
-	tmux $bind "${mod}${K}" swap-pane -s '{up-of}'
-	tmux $bind "${mod}${L}" swap-pane -s '{right-of}'
+	tmux $bind "${mod}C-${H}" swap-pane -s '{left-of}'
+	tmux $bind "${mod}C-${J}" swap-pane -s '{down-of}'
+	tmux $bind "${mod}C-${K}" swap-pane -s '{up-of}'
+	tmux $bind "${mod}C-${L}" swap-pane -s '{right-of}'
 else
-	tmux $bind "${mod}${H}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -L; tmux swap-pane -t $old'
-	tmux $bind "${mod}${J}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -D; tmux swap-pane -t $old'
-	tmux $bind "${mod}${K}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -U; tmux swap-pane -t $old'
-	tmux $bind "${mod}${L}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -R; tmux swap-pane -t $old'
+	tmux $bind "${mod}C-${H}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -L; tmux swap-pane -t $old'
+	tmux $bind "${mod}C-${J}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -D; tmux swap-pane -t $old'
+	tmux $bind "${mod}C-${K}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -U; tmux swap-pane -t $old'
+	tmux $bind "${mod}C-${L}" run-shell 'old=`tmux display -p "#{pane_index}"`; tmux select-pane -R; tmux swap-pane -t $old'
 fi
 
 # Open a terminal with Alt + Enter.

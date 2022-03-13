@@ -88,8 +88,10 @@ hi Type             ctermfg=81                cterm=none
 hi Typedef          ctermfg=81
 hi Underlined       ctermfg=244               cterm=underline
 hi VertSplit        ctermfg=238  ctermbg=238  cterm=bold
-hi Visual                        ctermbg=235
-hi VisualNOS                     ctermbg=238
+"hi Visual                        ctermbg=235
+"hi VisualNOS                     ctermbg=238
+hi Visual term=reverse cterm=reverse guibg=Grey
+hi VisualNOS term=reverse cterm=reverse guibg=Grey
 hi WarningMsg       ctermfg=231  ctermbg=238  cterm=bold
 hi WildMenu         ctermfg=252    ctermbg=161
 
