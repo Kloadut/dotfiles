@@ -2,13 +2,20 @@ set nocompatible              " be iMproved, required
 "packadd! dracula
 packadd! fzf
 packadd! fzf.vim
+packadd! foxdot.vim
+
+let g:sclang_executable_path = "/usr/bin/sclang"
+let g:python_executable_path = "/usr/bin/python"
 
 filetype plugin indent on
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 syntax enable
 "colorscheme dracula
-colorscheme molokai
+"colorscheme molokai
+colorscheme monokai256
+"colorscheme sourcerer
+let g:rehash256 = 1
 
 set expandtab
 set shiftwidth=2
@@ -21,7 +28,7 @@ set undofile
 set title
 set nowrap
 set list
-set listchars=tab:▸\ ,trail:·
+"set listchars=tab:▸\ ,trail:·
 set mouse=
 set scrolloff=8
 set sidescrolloff=8
@@ -30,26 +37,26 @@ set splitright
 set confirm
 set exrc
 
-set showmatch	" Highlight matching brace
-"set visualbell	" Use visual bell (no beeping)
-set hlsearch	" Highlight all search results
-set smartcase	" Enable smart-case search
-set ignorecase	" Always case-insensitive
-set autoindent	" Auto-indent new lines
-set incsearch	" Searches for strings incrementally
-set smartindent	" Enable smart-indent
-set smarttab	" Enable smart-tabs
-set softtabstop=2	" Number of spaces per Tab
-set showtabline=2	" Show tab bar
-set undolevels=1000	" Number of undo levels
-set backspace=indent,eol,start	" Backspace behaviour
-set ruler	" Show row and column ruler information
-set linebreak	" Break lines at word (requires Wrap lines)
-set showbreak=+++	" Wrap-broken line prefix
-set textwidth=100	" Line wrap (number of cols)
- 
+set showmatch " Highlight matching brace
+"set visualbell " Use visual bell (no beeping)
+set hlsearch " Highlight all search results
+set smartcase " Enable smart-case search
+set ignorecase " Always case-insensitive
+set autoindent " Auto-indent new lines
+set incsearch " Searches for strings incrementally
+set smartindent " Enable smart-indent
+set smarttab " Enable smart-tabs
+set softtabstop=2 " Number of spaces per Tab
+set showtabline=2 " Show tab bar
+set undolevels=1000 " Number of undo levels
+set backspace=indent,eol,start " Backspace behaviour
+set ruler " Show row and column ruler information
+set linebreak " Break lines at word (requires Wrap lines)
+set showbreak=+++ " Wrap-broken line prefix
+set textwidth=100 " Line wrap (number of cols)
+
 let g:javascript_plugin_flow = 1
- 
+
 " No ExMode
 map Q <Nop>
 
@@ -78,5 +85,6 @@ command! -bang -nargs=? -complete=dir Files
 command! -bang -nargs=? -complete=dir AllFiles
     \ call fzf#run(fzf#wrap('allfiles', fzf#vim#with_preview({ 'dir': <q-args>, 'sink': 'tabe', 'source': 'rg --files --hidden --glob=!.git/ --no-ignore' }), <bang>0))
 
+map gb :FoxDotEval<cr>
 nmap <C-P> :Files<cr>
-nmap <C-O> :AllFiles<cr>
+"nmap <C-O> :AllFiles<cr>
