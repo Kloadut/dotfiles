@@ -95,6 +95,10 @@ hi VisualNOS term=reverse cterm=reverse guibg=Grey
 hi WarningMsg       ctermfg=231  ctermbg=238  cterm=bold
 hi WildMenu         ctermfg=252    ctermbg=161
 
+hi TabLineFill ctermfg=0 ctermbg=0
+hi TabLine ctermfg=255 ctermbg=0
+hi TabLineSel ctermfg=0 ctermbg=255
+
 hi def link jsFlowDefinition         Comment
 hi def link jsFlowClassDef           Type
 hi def link jsFlowArgumentDef        Type
